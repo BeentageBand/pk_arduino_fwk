@@ -13,10 +13,11 @@
  * Project Includes
  *=====================================================================================*/
 #include "arduino_fwk_types.h"
+#include "arduino_fwk_dio.h"
 /*=====================================================================================* 
  * Standard Includes
  *=====================================================================================*/
-
+#include <Arduino.h>
 /*=====================================================================================* 
  * Local X-Macros
  *=====================================================================================*/
@@ -32,12 +33,7 @@
 /*=====================================================================================* 
  * Local Object Definitions
  *=====================================================================================*/
-const uint8_t DIO_Channel_To_Pin [] PROGMEM =
-{
-  1,
-  2,
-  3,
-};
+
 /*=====================================================================================* 
  * Exported Object Definitions
  *=====================================================================================*/
@@ -57,14 +53,14 @@ const uint8_t DIO_Channel_To_Pin [] PROGMEM =
 /*=====================================================================================* 
  * Exported Function Definitions
  *=====================================================================================*/
-void arduino::Init_DIO(const ARDUINO_DIO_CHANNEL_T pin)
+void arduino::Init_DIO(const ARDUINO_DIO_CHANNEL_T pin, uint8_t mode)
 {
-
+   pinMode(pin, mode);
 }
 
 void arduino::Set_DIO(const ARDUINO_DIO_CHANNEL_T pin,const uint8_t value)
 {
-   digitalWrite(DIO_Channel_To_Pin[pin], value);
+   digitalWrite(pin, value);
 }
 
 uint8_t arduino::Get_DIO(const ARDUINO_DIO_CHANNEL_T pin)
@@ -74,7 +70,7 @@ uint8_t arduino::Get_DIO(const ARDUINO_DIO_CHANNEL_T pin)
 
 void arduino::Shut_DIO(const ARDUINO_DIO_CHANNEL_T pin)
 {
-
+pinMode(pin, INPUT);
 }
 /*=====================================================================================* 
  * arduino_fwk_dio.cpp

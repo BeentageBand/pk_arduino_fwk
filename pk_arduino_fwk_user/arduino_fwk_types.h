@@ -14,10 +14,10 @@
  * Project Includes
  *=====================================================================================*/
 #include "arduino_fwk_uset.h"
+#include "std_def.h"
 /*=====================================================================================* 
  * Standard Includes
  *=====================================================================================*/
-#include <stdint.h>
 
 /*=====================================================================================* 
  * Exported Define Macros
@@ -30,8 +30,7 @@
 #undef ARDUINO_PWM_CHANNEL_INDEX
 #define ARDUINO_PWM_CHANNEL_INDEX(ch) ch,
 
-typedef enum
-{
+typedef enum{
 ARDUINO_PWM_CHANNELS_TABLE
 ARDUINO_PWM_MAX_CHANNELS
 }ARDUINO_PWM_CHANNEL_T;
@@ -49,9 +48,7 @@ ARDUINO_ADC_MAX_CHANNELS
 //ISR types
 #undef ARDUINO_ISR_THREAD_INDEX
 #define ARDUINO_ISR_THREAD_INDEX(thread) thread,
-
-typedef enum
-{
+typedef enum{
 ARDUINO_ISR_THREADS_TABLE
 ARDUINO_ISR_MAX_THREADS
 }ARDUINO_ISR_THREAD_T;
@@ -63,49 +60,33 @@ typedef struct
 {
    uint8_t         line;
    uint8_t         ptr;
-   const uint8_t * data;
-   uint8_t         lenght;
 }Arduino_LCD_T;
 
 //UART types
 #undef ARDUINO_UART_CHANNEL_INDEX
 #define ARDUINO_UART_CHANNEL_INDEX(ch) ch,
 
-typedef enum
-{
+typedef enum{
 ARDUINO_UART_CHANNELS_TABLE
 ARDUINO_UART_MAX_CHANNELS
 }ARDUINO_UART_CHANNEL_T;
 
 typedef struct
 {
-   uint8_t  channel;
+   ARDUINO_UART_CHANNEL_T  channel;
    uint16_t baud;
 }Arduino_UART_T;
 
 #undef ARDUINO_DIO_CHANNEL_INDEX
 #define ARDUINO_DIO_CHANNEL_INDEX(ch) ch,
-
 typedef enum
 {
    ARDUINO_DIO_CHANNELS_TABLE
    ARDUINO_DIO_MAX_CHANNELS
 }ARDUINO_DIO_CHANNEL_T;
 
-typedef struct
-{
-   uint8_t channel;
-   uint8_t spi_slave;
-}Arduino_SPI_T;
 
-#undef ARDUINO_SPI_CHANNEL_INDEX
-#define ARDUINO_SPI_CHANNEL_INDEX(ch) ch,
-
-typedef enum
-{
-   ARDUINO_SPI_CHANNELS_TABLE
-   ARDUINO_SPI_MAX_CHANNELS
-}ARDUINO_SPI_CHANNEL_T;
+typedef char Pgm_Char_T; //for const strings
 /*=====================================================================================* 
  * arduino_fwk_types.h
  *=====================================================================================*

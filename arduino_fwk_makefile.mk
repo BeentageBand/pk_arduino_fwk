@@ -38,14 +38,16 @@ $(_build_)_$(_curr_)_lib_objs=\
    $($(_build_)_OBJ_DIR)/arduino_fwk_adc$(_obj_ext_)  \
    $($(_build_)_OBJ_DIR)/arduino_fwk_clk$(_obj_ext_)  \
    $($(_build_)_OBJ_DIR)/arduino_fwk_dio$(_obj_ext_)  \
-   $($(_build_)_OBJ_DIR)/arduino_fwk_iic$(_obj_ext_)  \
    $($(_build_)_OBJ_DIR)/arduino_fwk_isr$(_obj_ext_)  \
    $($(_build_)_OBJ_DIR)/arduino_fwk_lcd$(_obj_ext_)  \
    $($(_build_)_OBJ_DIR)/arduino_fwk_mgr$(_obj_ext_)  \
    $($(_build_)_OBJ_DIR)/arduino_fwk_pwm$(_obj_ext_)  \
-   $($(_build_)_OBJ_DIR)/arduino_fwk_sd$(_obj_ext_)   \
-   $($(_build_)_OBJ_DIR)/arduino_fwk_spi$(_obj_ext_)  \
    $($(_build_)_OBJ_DIR)/arduino_fwk_uart$(_obj_ext_) \
+   $($(_build_)_OBJ_DIR)/LiquidCrystal$(_obj_ext_) \
+   #  \
+   $($(_build_)_OBJ_DIR)/arduino_fwk_spi$(_obj_ext_)  \
+   $($(_build_)_OBJ_DIR)/arduino_fwk_sd$(_obj_ext_)   \
+   $($(_build_)_OBJ_DIR)/arduino_fwk_iic$(_obj_ext_)  \
    
 endif
 
@@ -98,8 +100,8 @@ define Arduino_LIB_MAKE
 
 ifeq "$(_build_)" "avr"
 
-$($(_build_)_LIB_DIR)/$(_lprefix_)arduino_core$(_lib_ext_) : $($(_build_)_LIB_DIR) $(_path_)$($(_build_)_$(_curr_)_lib_dir)/$(_lprefix_)arduino_core$(_lib_ext_)
-	-cp -pf  $(_path_)$($(_build_)_$(_curr_)_lib_dir)/$(_lprefix_)arduino_core$(_lib_ext_) $$@
+$($(_build_)_LIB_DIR)/$(_lprefix_)arduino_core$(_lib_ext_) : $($(_build_)_LIB_DIR) /cygdrive/c/Dropbox/AVR/out/core.a
+	-cp -pf /cygdrive/c/Dropbox/AVR/out/core.a $$@
 
 endif
 

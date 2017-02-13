@@ -43,9 +43,12 @@
  *=====================================================================================*/
 const uint8_t ADC_Channel_To_Pin[] PROGMEM =
 {
-   9,/*ARDUINO_ADC_CHANNEL_0*/
-   5,/*ARDUINO_ADC_CHANNEL_1*/
-   4,/*ARDUINO_ADC_CHANNEL_2*/
+   ARDUINO_DIO_CHANNEL_14,/*ARDUINO_ADC_CHANNEL_0*/
+   ARDUINO_DIO_CHANNEL_15,/*ARDUINO_ADC_CHANNEL_1*/
+   ARDUINO_DIO_CHANNEL_16,/*ARDUINO_ADC_CHANNEL_2*/
+   ARDUINO_DIO_CHANNEL_17,/*ARDUINO_ADC_CHANNEL_3*/
+   ARDUINO_DIO_CHANNEL_18,/*ARDUINO_ADC_CHANNEL_4*/
+   ARDUINO_DIO_CHANNEL_19,/*ARDUINO_ADC_CHANNEL_5*/
 };
 /*=====================================================================================* 
  * Local Inline-Function Like Macros
@@ -62,7 +65,7 @@ void arduino::Init_ADC(const ARDUINO_ADC_CHANNEL_T channel)
 {
    if(channel < ARDUINO_ADC_MAX_CHANNELS)
    {
-       pinMode(ADC_Channel_To_Pin[channel], INPUT);
+       pinMode(pgm_read_byte(ADC_Channel_To_Pin + channel), INPUT);
    }
 }
 uint16_t arduino::Get_ADC(const ARDUINO_ADC_CHANNEL_T channel)
@@ -70,7 +73,7 @@ uint16_t arduino::Get_ADC(const ARDUINO_ADC_CHANNEL_T channel)
    uint16_t read = 0xFFFFU;
    if(channel < ARDUINO_ADC_MAX_CHANNELS)
    {
-      read = analogRead(ADC_Channel_To_Pin[channel]);
+      read = analogRead(pgm_read_byte(ADC_Channel_To_Pin + channel));
    }
    return read;
 }
@@ -79,7 +82,7 @@ void arduino::Stop_ADC(const ARDUINO_ADC_CHANNEL_T channel)
 {
    if(channel < ARDUINO_ADC_MAX_CHANNELS)
    {
-      analogWrite(ADC_Channel_To_Pin[channel], INPUT);
+      analogWrite(pgm_read_byte(ADC_Channel_To_Pin + channel), INPUT);
    }
 }
 /*=====================================================================================* 

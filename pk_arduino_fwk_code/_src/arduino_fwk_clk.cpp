@@ -54,16 +54,37 @@
  *=====================================================================================*/
 void arduino::Init_Clk(void)
 {
-
+   init();
 }
 
 uint32_t arduino::Get_Clk( void)
 {
    return millis();
 }
-void arduino::Stop_Clk(void)
-{
 
+void arduino::Sleep(const uint32_t ms)
+{
+	delay(ms);
+}
+
+void arduino::Usleep(const uint32_t us)
+{
+	delayMicroseconds(us);
+}
+
+void arduino::Init_Tone(const ARDUINO_DIO_CHANNEL_T pin)
+{
+   pinMode(pin, OUTPUT);
+}
+
+void arduino::Set_Tone(const ARDUINO_DIO_CHANNEL_T pin, uint16_t freq)
+{
+   tone(pin,freq);
+}
+
+void arduino::Stop_Tone(const ARDUINO_DIO_CHANNEL_T pin)
+{
+   noTone(pin);
 }
 /*=====================================================================================* 
  * arduino_fwk_clk.cpp
